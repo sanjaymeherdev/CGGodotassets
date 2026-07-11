@@ -42,40 +42,14 @@
 .sm-logo-text span { color: #4f46e5; }
 
 /* ── Desktop nav ── */
-.sm-nav { display: flex; align-items: center; gap: 0.1rem; flex: 1; justify-content: center; }
-.sm-nav a, .sm-nav .sm-drop-btn {
+.sm-nav { display: flex; align-items: center; gap: 0.5rem; flex: 1; justify-content: center; }
+.sm-nav a {
     color: #a0a0c0; text-decoration: none; font-size: 0.875rem; font-weight: 500;
     padding: 0.45rem 0.7rem; border-radius: 6px; transition: all 0.15s;
-    background: none; border: none; cursor: pointer; font-family: inherit;
-    white-space: nowrap; display: flex; align-items: center; gap: 0.3rem;
+    white-space: nowrap;
 }
-.sm-nav a:hover, .sm-nav .sm-drop-btn:hover,
+.sm-nav a:hover,
 .sm-nav a.active { color: #fff; background: rgba(255,255,255,0.07); }
-
-/* ── Dropdown ── */
-.sm-dropdown { position: relative; }
-.sm-drop-arrow { font-size: 0.6rem; opacity: 0.6; transition: transform 0.2s; }
-.sm-dropdown:hover .sm-drop-arrow { transform: rotate(180deg); }
-.sm-dropdown-menu {
-    display: none; position: absolute; top: calc(100% + 6px); left: 50%;
-    transform: translateX(-50%);
-    background: #1a1a2e; border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 12px; padding: 0.4rem; min-width: 230px; z-index: 200;
-    box-shadow: 0 12px 40px rgba(0,0,0,0.5);
-}
-.sm-dropdown-menu a {
-    display: flex; align-items: center; gap: 0.65rem;
-    padding: 0.6rem 0.9rem; border-radius: 8px;
-    color: #c4c4d4; font-size: 0.85rem; text-decoration: none;
-    transition: background 0.15s, color 0.15s; white-space: nowrap;
-}
-.sm-dropdown-menu a .sm-drop-icon { font-size: 1rem; flex-shrink: 0; }
-.sm-dropdown-menu a:hover { background: rgba(79,70,229,0.18); color: #fff; }
-/* Bridge to prevent hover gap */
-.sm-dropdown::after {
-    content: ''; position: absolute; bottom: -8px; left: 0;
-    width: 100%; height: 8px;
-}
 
 /* ── CTA button ── */
 .sm-ctas { display: flex; align-items: center; gap: 0.5rem; flex-shrink: 0; }
@@ -126,11 +100,6 @@ body.sm-no-scroll { overflow: hidden; }
 .sm-drawer-close:hover { background: rgba(255,255,255,0.15); }
 
 .sm-drawer-body { padding: 0.5rem 0.75rem 1rem; }
-.sm-drawer-section-label {
-    font-size: 0.68rem; font-weight: 700; color: #4f46e5;
-    letter-spacing: 0.1em; text-transform: uppercase;
-    padding: 0.75rem 0.75rem 0.3rem;
-}
 .sm-drawer-body a {
     display: flex; align-items: center; gap: 0.6rem;
     padding: 0.6rem 0.75rem; border-radius: 8px;
@@ -138,7 +107,6 @@ body.sm-no-scroll { overflow: hidden; }
     transition: background 0.15s, color 0.15s;
 }
 .sm-drawer-body a:hover { background: rgba(79,70,229,0.15); color: #fff; }
-.sm-drawer-divider { height: 1px; background: rgba(255,255,255,0.07); margin: 0.4rem 0.5rem; }
 .sm-drawer-ctas { padding: 0.75rem; }
 .sm-drawer-ctas a {
     display: block; text-align: center; padding: 0.7rem;
@@ -192,61 +160,24 @@ body.sm-no-scroll { overflow: hidden; }
 
     // ─── UNIFIED NAV CONFIG ───────────────────────────────────────────
     const NAV_LINKS = [
-        {
-            label: 'Business',
-            dropdown: [
-                { icon: '🏢', label: 'Sanjay Meher',     href: '/sanjaymeher' },
-                { icon: '📦', label: 'Products',          href: '/sanjaymeher/products' },
-                { icon: '⚙️', label: 'Services',          href: '/sanjaymeher/services' },
-                { icon: '📣', label: 'Digital Services',  href: `${base}marketing/digital-services.html` },
-            ]
-        },
-        {
-            label: 'GodotDev',
-            dropdown: [
-                { icon: '🛒', label: 'CG Store',          href: `${base}cgstore.html` },
-                { icon: '🔄', label: 'CGRelay',           href: `${base}cgrelay.html` },
-                { icon: '⚡', label: 'Multiplayer Setup', href: `${base}godotmp.html` },
-                { icon: '🔒', label: 'GodotConnect',      href: `${base}godotconnect.html` },
-                { icon: '🌐', label: 'CGOW',              href: `${base}godot-4-mobile-game.html` },
-                { icon: '🎮', label: '/godot/assets',     href: `${base}Godot4Systems/index.html` },
-            ]
-        },
-        {
-            label: 'Tech',
-            dropdown: [
-                { icon: '⚙️', label: 'Tech Tools',    href: `${base}tech-tools.html` },
-                { icon: '🤖', label: 'AI Commander',  href: `${base}marketing/AICommander.html` },
-                { icon: '📱', label: 'PocketAI',      href: `${base}marketing/pocketai.html` },
-            ]
-        },
-        {
-            label: 'Top Products',
-            dropdown: [
-                { icon: '🔥', label: 'LeadFlow',  href: `${base}marketing/leadflow.html` },
-                { icon: '📊', label: 'SiteSheet', href: `${base}marketing/sitesheet.html` },
-                { icon: '💬', label: 'WABlast',   href: `${base}marketing/wablast.html` },
-                { icon: '📲', label: 'SanjayWA',  href: `${base}sanjaywa/index.html` },
-            ]
-        },
-        { label: 'Blog',    href: `${base}blog.html` },
-        { label: 'Contact', href: `${base}contact.html` },
-        { label: 'Review',  href: `${base}review.html` },
+        { label: 'Home',     href: `${base}index.html` },
+        { label: 'Services', href: `${base}services.html` },
+        { label: 'Mobile Game', href: `${base}mobile-game.html` },
+        { label: 'PvP Game',    href: `${base}pvp-game.html` },
+        { label: 'Touch',       href: `${base}touch-control.html` },
+        { label: 'Multiplayer', href: `${base}multiplayer/index.html` },
+        { label: 'GDScript',    href: `${base}gdscript.html` },
+        { label: 'Assets',      href: `${base}assets/index.html` },
+        { label: 'Visual Coder',href: `${base}visual-coder/index.html` },
+        { label: 'Courses',     href: `${base}course/index.html` },
+        { label: 'Tools',       href: `${base}tools-list.html` },
+        { label: 'Review',      href: `${base}review.html` },
+        { label: 'Connect',     href: `${base}connect.html` },
     ];
 
     // ─── RENDER DESKTOP NAV LINKS ─────────────────────────────────────
     function desktopLinks() {
         return NAV_LINKS.map(l => {
-            if (l.dropdown) {
-                const items = l.dropdown.map(d =>
-                    `<a href="${d.href}"><span class="sm-drop-icon">${d.icon}</span>${d.label}</a>`
-                ).join('');
-                return `
-                <div class="sm-dropdown" data-drop>
-                    <button class="sm-drop-btn">${l.label} <span class="sm-drop-arrow">▼</span></button>
-                    <div class="sm-dropdown-menu">${items}</div>
-                </div>`;
-            }
             const active = window.location.href.includes(l.href.replace(/^\.\//, '')) ? ' class="active"' : '';
             return `<a href="${l.href}"${active}>${l.label}</a>`;
         }).join('');
@@ -256,15 +187,7 @@ body.sm-no-scroll { overflow: hidden; }
     function drawerLinks() {
         let html = '';
         NAV_LINKS.forEach(l => {
-            if (l.dropdown) {
-                html += `<div class="sm-drawer-section-label">${l.label}</div>`;
-                l.dropdown.forEach(d => {
-                    html += `<a href="${d.href}"><span>${d.icon}</span>${d.label}</a>`;
-                });
-                html += `<div class="sm-drawer-divider"></div>`;
-            } else {
-                html += `<a href="${l.href}">${l.label}</a>`;
-            }
+            html += `<a href="${l.href}">${l.label}</a>`;
         });
         return html;
     }
@@ -335,29 +258,24 @@ body.sm-no-scroll { overflow: hidden; }
             </div>
             <div>
                 <h4>GodotDev</h4>
-                <a href="${base}cgstore.html">🛒 CG Store</a>
-                <a href="${base}cgrelay.html">🔄 CGRelay</a>
-                <a href="${base}godotmp.html">⚡ Multiplayer Setup</a>
-                <a href="${base}godotconnect.html">🔒 GodotConnect</a>
-                <a href="${base}godot-4-mobile-game.html">🌐 CGOW</a>
-                <a href="${base}Godot4Systems/index.html">🎮 Godot4Systems</a>
+                <a href="${base}mobile-game.html">🎮 Mobile Game</a>
+                <a href="${base}pvp-game.html">⚔️ PvP Game</a>
+                <a href="${base}touch-control.html">👆 Touch Controls</a>
+                <a href="${base}multiplayer/index.html">🌐 Multiplayer</a>
+                <a href="${base}gdscript.html">📘 GDScript</a>
             </div>
             <div>
-                <h4>Business & Tech</h4>
-                <a href="/sanjaymeher">🏢 Sanjay Meher</a>
-                <a href="/sanjaymeher/services">⚙️ Services</a>
-                <a href="${base}marketing/digital-services.html">📣 Digital Services</a>
-                <a href="${base}tech-tools.html">🔧 Tech Tools</a>
-                <a href="${base}marketing/AICommander.html">🤖 AI Commander</a>
+                <h4>Assets & Tools</h4>
+                <a href="${base}assets/index.html">📦 All Assets</a>
+                <a href="${base}visual-coder/index.html">🔧 Visual Coder</a>
+                <a href="${base}course/index.html">📚 Courses</a>
+                <a href="${base}tools-list.html">🛠️ Tools</a>
             </div>
             <div>
-                <h4>Top Products</h4>
-                <a href="${base}marketing/leadflow.html">🔥 LeadFlow</a>
-                <a href="${base}marketing/sitesheet.html">📊 SiteSheet</a>
-                <a href="${base}marketing/wablast.html">💬 WABlast</a>
-                <a href="${base}sanjaywa/index.html">📲 SanjayWA</a>
-                <a href="${base}blog.html">📝 Blog</a>
-                <a href="${base}contact.html">📧 Contact</a>
+                <h4>Quick Links</h4>
+                <a href="${base}services.html">⚙️ Services</a>
+                <a href="${base}review.html">⭐ Review</a>
+                <a href="${base}connect.html">📞 Connect</a>
             </div>
         </div>
         <div class="sm-f-bottom">
@@ -398,18 +316,6 @@ body.sm-no-scroll { overflow: hidden; }
         close   && close.addEventListener('click', closeDrawer);
         overlay && overlay.addEventListener('click', closeDrawer);
         document.addEventListener('keydown', e => { if (e.key === 'Escape') closeDrawer(); });
-
-        // Desktop dropdowns — hover with bridge delay
-        document.querySelectorAll('.sm-dropdown[data-drop]').forEach(dd => {
-            const menu = dd.querySelector('.sm-dropdown-menu');
-            let timer;
-            const show = () => { clearTimeout(timer); menu.style.display = 'block'; };
-            const hide = () => { timer = setTimeout(() => { menu.style.display = 'none'; }, 120); };
-            dd.addEventListener('mouseenter', show);
-            dd.addEventListener('mouseleave', hide);
-            menu.addEventListener('mouseenter', show);
-            menu.addEventListener('mouseleave', hide);
-        });
     }
 
     // ─── INJECT ───────────────────────────────────────────────────────
